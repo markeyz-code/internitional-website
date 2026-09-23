@@ -4,9 +4,9 @@
     <section class="pt-24 pb-16">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <span class="text-sm font-semibold text-brand tracking-wider uppercase mb-3 block">Plans</span>
-        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Intern membership</h1>
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Professional membership</h1>
         <p class="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
-          Choose the plan that fits your needs.
+          Choose the plan that fits your career goals.
         </p>
 
         <!-- Toggle (Monthly/Yearly visual only for now as requested by mockup) -->
@@ -105,7 +105,7 @@
         <div class="mb-16 max-w-2xl">
           <span class="text-sm font-semibold text-brand tracking-wider uppercase mb-2 block">Included</span>
           <h2 class="text-3xl font-bold text-gray-900 mb-4">Everything you need to build your career</h2>
-          <p class="text-lg text-gray-600 mb-6">Comprehensive tools, resources, and connections to get you through the internship program and into a successful career.</p>
+          <p class="text-lg text-gray-600 mb-6">Comprehensive tools, resources, and connections to get you through your NYSC program and into a successful career.</p>
           <NuxtLink to="/register" class="text-brand font-medium hover:text-[#1f4e70] flex items-center gap-2">
             Explore <ArrowRight class="w-4 h-4" />
           </NuxtLink>

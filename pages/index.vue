@@ -18,13 +18,13 @@
       <div class="absolute inset-0 flex items-center justify-center">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8 relative z-10">
           <div class="inline-block bg-brand/20 border border-brand/30 text-blue-100 px-4 py-1.5 rounded-full text-sm font-medium tracking-wide mb-2 uppercase backdrop-blur-sm">
-            Empowering the Next Generation of Scientists
+            Advancing Your Medical Science Career
           </div>
           <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-tight">
-            The Professional Network for <br class="hidden md:block"/> <span class="text-brand">MLS Interns</span>
+            The Professional Network for <br class="hidden md:block"/> <span class="text-brand">Graduates & Corpers</span>
           </h1>
           <p class="text-lg md:text-xl text-gray-300 font-light max-w-3xl mx-auto">
-            Access specialized clinical resources, connect with experienced mentors, and navigate your 24-month internship with absolute confidence.
+            Access specialized clinical resources, connect with experienced mentors, and navigate your NYSC and early career with absolute confidence.
           </p>
           <div class="flex flex-col sm:flex-row justify-center gap-4 pt-6">
             <NuxtLink to="/register" class="bg-brand hover:bg-[#1f4e70] text-white px-8 py-2 rounded-lg text-lg font-medium transition-colors inline-block w-full sm:w-auto text-center border border-transparent">
@@ -55,8 +55,8 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-gray-100 text-center">
           <div class="px-4">
-            <div class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">500+</div>
-            <div class="text-sm font-medium text-gray-500 uppercase tracking-wider">Verified Interns</div>
+            <div class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">5k+</div>
+            <div class="text-sm font-medium text-gray-500 uppercase tracking-wider">Verified Professionals</div>
           </div>
           <div class="px-4">
             <div class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">10k+</div>
@@ -79,7 +79,7 @@
       <div class="max-w-7xl mx-auto">
         <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <h2 class="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">Everything You Need to Succeed</h2>
-          <p class="text-lg text-gray-600">A complete ecosystem designed exclusively for the demands of the modern Medical Laboratory Science internship.</p>
+          <p class="text-lg text-gray-600">A complete ecosystem designed exclusively for the demands of the modern Medical Laboratory Science career.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -142,7 +142,7 @@
             Strictly Verified.<br/>Exclusive 2-Year Access.
           </h2>
           <p class="text-lg text-gray-600 leading-relaxed">
-            To maintain the highest quality and relevance of our community, access is strictly verified. We manually review every applicant's credentials to ensure they are actively participating in the Medical Laboratory Science internship.
+            To maintain the highest quality and relevance of our community, access is strictly verified. We manually review every applicant's credentials to ensure they are actively participating as a Medical Laboratory Science professional.
           </p>
           <ul class="space-y-4 pt-4">
             <li class="flex items-start gap-3">
@@ -261,7 +261,7 @@
         </div>
         
         <div class="text-center">
-          <NuxtLink to="/pricing" class="inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-white bg-brand hover:bg-[#1f4e70] rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
+          <NuxtLink to="/pricing" class="inline-flex items-center justify-center px-8 py-2.5 text-lg font-medium text-white bg-brand hover:bg-[#1f4e70] rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
             View Subscription Plans
             <ArrowRight class="ml-2 w-5 h-5" />
           </NuxtLink>
@@ -369,9 +369,9 @@ import { Folder, Users, Briefcase, Check, ChevronDown } from 'lucide-vue-next';
 import { useCreateEnquiry } from '@/composables/modules/enquiries/useCreateEnquiry';
 
 useSeoMeta({
-  title: 'InternTional - Medical Laboratory Science Community',
+  title: 'Home',
   description: 'Connect with mentors, access premium clinical guides, and elevate your MLS internship.',
-  ogTitle: 'InternTional - Medical Laboratory Science Community',
+  ogTitle: 'Home',
   ogDescription: 'Connect with mentors, access premium clinical guides, and elevate your MLS internship.',
   ogImage: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2000&auto=format&fit=crop',
   twitterCard: 'summary_large_image',
