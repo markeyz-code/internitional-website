@@ -50,6 +50,9 @@ export const useRegister = () => {
     lastName: string;
     email: string;
     password: string;
+    country?: string;
+    phoneNumber?: string;
+    professionalBackground?: string;
     file: File;
   }) => {
     loading.value = true;
@@ -62,6 +65,9 @@ export const useRegister = () => {
         lastName: payload.lastName,
         email: payload.email,
         password: payload.password,
+        country: payload.country,
+        phoneNumber: payload.phoneNumber,
+        professionalBackground: payload.professionalBackground,
         verificationFileUrl,
       });
       showToast({
