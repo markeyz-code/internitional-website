@@ -56,21 +56,34 @@
 
             <div v-if="step === 2" class="space-y-6">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <UiInput id="country" label="Country of Residence" v-model="form.country" required placeholder="e.g. United Kingdom" />
-                <UiInput id="phoneNumber" label="Phone Number" type="tel" v-model="form.phoneNumber" required placeholder="+44 7700 900077" />
+                <UiSelectSearch
+                  id="country"
+                  label="Country of Residence"
+                  v-model="selectedCountryCode"
+                  :options="countries"
+                  required
+                  placeholder="Select a country"
+                />
+                <UiInput 
+                  id="phoneNumber" 
+                  label="Phone Number" 
+                  type="tel" 
+                  :modelValue="form.phoneNumber" 
+                  @update:modelValue="onPhoneInput"
+                  required 
+                  placeholder="+44 7700 900077" 
+                />
               </div>
               
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Professional Background / Department</label>
-                <select v-model="form.professionalBackground" required class="w-full px-3 py-2 border border-gray-300 rounded focus:ring-brand focus:border-brand">
-                  <option value="" disabled>Select Department</option>
-                  <option value="Hematology">Hematology</option>
-                  <option value="Chemical Pathology">Chemical Pathology</option>
-                  <option value="Microbiology">Microbiology</option>
-                  <option value="Histopathology">Histopathology</option>
-                  <option value="Medical Virology">Medical Virology</option>
-                  <option value="General">General</option>
-                </select>
+                <UiSelectSearch
+                  id="professionalBackground"
+                  label="Professional Background / Department"
+                  v-model="form.professionalBackground"
+                  :options="departments"
+                  required
+                  placeholder="Select Department"
+                />
               </div>
 
               <div class="pt-2">
@@ -147,19 +160,79 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
 })
 
-import { ref } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 import { ArrowRight, UploadCloud, CheckCircle2, Lock } from 'lucide-vue-next';
 import { useRegister } from '@/composables/modules/auth/useRegister';
 import UiInput from '@/components/ui/Input.vue';
 import UiButton from '@/components/ui/Button.vue';
 import UiFileInput from '@/components/ui/FileInput.vue';
+import UiSelectSearch from '@/components/ui/SelectSearch.vue';
+import { getCountries, getCountryCallingCode, AsYouType, isValidPhoneNumber } from 'libphonenumber-js/min';
+import { GATEWAY_ENDPOINT } from '@/api_factory/axios.config';
 
 definePageMeta({ layout: 'empty' });
+
+// Setup Countries List
+let regionNames: Intl.DisplayNames | null = null;
+try {
+  regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
+} catch (e) {
+  // fallback for unsupported environments
+}
+
+const countries = getCountries().map(code => {
+  const name = regionNames ? regionNames.of(code) : code;
+  return {
+    label: `${name} (+${getCountryCallingCode(code)})`,
+    value: code,
+    name: name,
+    callingCode: getCountryCallingCode(code),
+  };
+}).sort((a, b) => (a.name || '').localeCompare(b.name || ''));
 
 const { loading, uploadProgress, error, register } = useRegister();
 const form = ref({ firstName: '', lastName: '', email: '', password: '', country: '', phoneNumber: '', professionalBackground: '', file: null as File | null });
 const success = ref(false);
 const step = ref(1);
+
+const selectedCountryCode = ref('');
+const departments = ref<{label: string; value: string}[]>([]);
+
+const fetchDepartments = async () => {
+  try {
+    const res = await GATEWAY_ENDPOINT.get('/departments');
+    departments.value = res.data || [];
+  } catch (err) {
+    console.error('Failed to fetch departments:', err);
+  }
+};
+
+onMounted(() => {
+  fetchDepartments();
+});
+
+watch(selectedCountryCode, (newCode) => {
+  if (newCode) {
+    const c = countries.find(x => x.value === newCode);
+    if (c) form.value.country = c.name || newCode;
+    // Auto format existing phone
+    if (form.value.phoneNumber) {
+      const formatter = new AsYouType(newCode);
+      form.value.phoneNumber = formatter.input(form.value.phoneNumber);
+    }
+  } else {
+    form.value.country = '';
+  }
+});
+
+const onPhoneInput = (val: string) => {
+  if (selectedCountryCode.value) {
+    const formatter = new AsYouType(selectedCountryCode.value);
+    form.value.phoneNumber = formatter.input(val);
+  } else {
+    form.value.phoneNumber = val;
+  }
+};
 
 const submitStep = async () => {
   if (step.value === 1) {
@@ -167,10 +240,29 @@ const submitStep = async () => {
     return;
   }
   
+  error.value = null;
+
+  if (!selectedCountryCode.value) {
+    error.value = 'Please select your country of residence.';
+    return;
+  }
+  if (!form.value.phoneNumber) {
+    error.value = 'Please enter your phone number.';
+    return;
+  }
+  if (!isValidPhoneNumber(form.value.phoneNumber, selectedCountryCode.value)) {
+    error.value = 'Please enter a valid phone number for the selected country.';
+    return;
+  }
+  if (!form.value.professionalBackground) {
+    error.value = 'Please select a department.';
+    return;
+  }
   if (!form.value.file) {
     error.value = 'Please upload a verification document to proceed.';
     return;
   }
+
   const result = await register({
     firstName: form.value.firstName,
     lastName: form.value.lastName,
