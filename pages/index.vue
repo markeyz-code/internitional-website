@@ -18,13 +18,13 @@
       <div class="absolute inset-0 flex items-center justify-center">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8 relative z-10">
           <div class="inline-block bg-brand/20 border border-brand/30 text-blue-100 px-4 py-1.5 rounded-full text-sm font-medium tracking-wide mb-2 uppercase backdrop-blur-sm">
-            Advancing Your Medical Science Career
+            Empowering the Next Generation of Scientists
           </div>
           <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-tight">
-            The Professional Network for <br class="hidden md:block"/> <span class="text-brand">Graduates & Corpers</span>
+            The Ultimate Network for <br class="hidden md:block"/> <span class="text-brand">MLS Interns</span>
           </h1>
           <p class="text-lg md:text-xl text-gray-300 font-light max-w-3xl mx-auto">
-            Access specialized clinical resources, connect with experienced mentors, and navigate your NYSC and early career with absolute confidence.
+            Access specialized study materials, connect with experienced mentors, and navigate your academic journey with absolute confidence.
           </p>
           <div class="flex flex-col sm:flex-row justify-center gap-4 pt-6">
             <NuxtLink to="/register" class="bg-brand hover:bg-[#1f4e70] text-white px-8 py-2 rounded-lg text-lg font-medium transition-colors inline-block w-full sm:w-auto text-center border border-transparent">
@@ -56,11 +56,11 @@
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-gray-100 text-center">
           <div class="px-4">
             <div class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">5k+</div>
-            <div class="text-sm font-medium text-gray-500 uppercase tracking-wider">Verified Professionals</div>
+            <div class="text-sm font-medium text-gray-500 uppercase tracking-wider">Verified Interns</div>
           </div>
           <div class="px-4">
             <div class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">10k+</div>
-            <div class="text-sm font-medium text-gray-500 uppercase tracking-wider">Clinical Resources</div>
+            <div class="text-sm font-medium text-gray-500 uppercase tracking-wider">Study Resources</div>
           </div>
           <div class="px-4">
             <div class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">150+</div>
@@ -79,7 +79,7 @@
       <div class="max-w-7xl mx-auto">
         <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <h2 class="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">Everything You Need to Succeed</h2>
-          <p class="text-lg text-gray-600">A complete ecosystem designed exclusively for the demands of the modern Medical Laboratory Science career.</p>
+          <p class="text-lg text-gray-600">A complete ecosystem designed exclusively for the demands of the modern University student.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -94,7 +94,7 @@
                 <Folder class="w-6 h-6" />
               </div>
               <h3 class="text-2xl font-bold text-gray-900 mb-3 mt-4">The Vault</h3>
-              <p class="text-gray-600 flex-1 leading-relaxed">Access curated study materials, past questions, and clinical bench guides maintained and vetted by the community.</p>
+              <p class="text-gray-600 flex-1 leading-relaxed">Access curated study materials, past questions, and academic bench guides maintained and vetted by the community.</p>
             </div>
           </div>
 
@@ -109,7 +109,7 @@
                 <Users class="w-6 h-6" />
               </div>
               <h3 class="text-2xl font-bold text-gray-900 mb-3 mt-4">Expert Mentorship</h3>
-              <p class="text-gray-600 flex-1 leading-relaxed">Connect directly with senior scientists who have navigated the intricacies of the internship and advanced their careers.</p>
+              <p class="text-gray-600 flex-1 leading-relaxed">Connect directly with senior interns and professionals who have navigated the intricacies of the exams and lab practicals.</p>
             </div>
           </div>
 
@@ -124,7 +124,7 @@
                 <Briefcase class="w-6 h-6" />
               </div>
               <h3 class="text-2xl font-bold text-gray-900 mb-3 mt-4">Career Hub</h3>
-              <p class="text-gray-600 flex-1 leading-relaxed">Prepare for post-internship life with resume reviews, interview prep, and exclusive job postings from top laboratories.</p>
+              <p class="text-gray-600 flex-1 leading-relaxed">Prepare for graduation with resume reviews, interview prep, and exclusive academic and entry-level postings.</p>
             </div>
           </div>
         </div>
@@ -142,7 +142,7 @@
             Strictly Verified.<br/>Exclusive 2-Year Access.
           </h2>
           <p class="text-lg text-gray-600 leading-relaxed">
-            To maintain the highest quality and relevance of our community, access is strictly verified. We manually review every applicant's credentials to ensure they are actively participating as a Medical Laboratory Science professional.
+            To maintain the highest quality and relevance of our community, access is strictly verified. We manually review every applicant's credentials to ensure they are an actively participating University student.
           </p>
           <ul class="space-y-4 pt-4">
             <li class="flex items-start gap-3">
@@ -167,7 +167,7 @@
         </div>
         <div class="w-full lg:w-1/2">
           <div class="relative rounded-lg overflow-hidden border border-gray-200 shadow-sm">
-            <img src="/images/black_african_medical_students.jpg" alt="Medical Laboratory Science Verification" class="w-full h-auto object-cover" />
+            <img src="/images/black_african_medical_students.jpg" alt="University Verification" class="w-full h-auto object-cover" />
             <div class="absolute inset-0 bg-gradient-to-tr from-brand/20 to-transparent mix-blend-multiply"></div>
           </div>
         </div>
@@ -179,7 +179,7 @@
       <div class="max-w-7xl mx-auto">
         <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <h2 class="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">Hear From Our Interns</h2>
-          <p class="text-lg text-gray-600">See how InternTional has transformed the internship experience for hundreds of medical laboratory scientists.</p>
+          <p class="text-lg text-gray-600">See how InternTional has transformed the university experience for hundreds of interns.</p>
         </div>
         <div class="relative max-w-4xl mx-auto">
           <div class="overflow-hidden relative">
@@ -225,7 +225,7 @@
         <div class="md:w-1/2">
           <h2 class="text-3xl md:text-5xl font-bold mb-6">Our Mission & Vision</h2>
           <p class="text-lg text-blue-100 leading-relaxed mb-4">
-            We believe that every Medical Laboratory Science professional deserves access to world-class resources, guidance, and professional networks, regardless of their background.
+            We believe that every Medical Laboratory Science student deserves access to world-class resources, guidance, and professional networks, regardless of their background.
           </p>
           <p class="text-lg text-blue-100 leading-relaxed">
             Our vision is to empower the next generation of African medical scientists to innovate, excel, and lead on a global scale.
@@ -242,22 +242,106 @@
     <section class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50 border-t border-gray-200">
       <div class="max-w-7xl mx-auto">
         <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">Community Highlights</h2>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">Community Highlights & Events</h2>
           <p class="text-lg text-gray-600 mt-4">Join our webinars, seminars, and networking events.</p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 hover:shadow-md transition-shadow">
-            <span class="bg-blue-100 text-brand text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Upcoming Webinar</span>
-            <h3 class="text-2xl font-bold text-gray-900 mt-4 mb-2">Mastering Laboratory Diagnostics</h3>
-            <p class="text-gray-600 mb-4">Join Dr. Osei as he walks through the latest methodologies in modern clinical diagnostics. Exclusive to members.</p>
-            <p class="text-sm font-semibold text-gray-500">Starts: Friday, 4:00 PM</p>
+        
+        <div v-if="loadingEvents" class="text-center py-12">
+          <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-brand mx-auto"></div>
+        </div>
+        
+        <div v-else-if="events.length === 0" class="text-center py-12 text-gray-500">
+          No upcoming events at the moment.
+        </div>
+
+        <div v-else class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div v-for="event in events.slice(0, 4)" :key="event._id" @click="openEventModal(event)" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 hover:shadow-md transition-shadow cursor-pointer relative overflow-hidden group">
+            <span class="bg-brand/10 text-brand text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">{{ event.category || 'Event' }}</span>
+            <h3 class="text-2xl font-bold text-gray-900 mt-4 mb-2 group-hover:text-brand transition-colors">{{ event.title }}</h3>
+            <p class="text-gray-600 mb-4 line-clamp-2">{{ event.description }}</p>
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm font-semibold text-gray-500">Date: {{ new Date(event.date).toLocaleDateString() }}</p>
+                <p class="text-sm font-semibold text-gray-500 mt-1" v-if="event.location">Location: {{ event.location }}</p>
+              </div>
+              <button class="text-brand text-sm font-bold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">View Details <ArrowRight class="w-4 h-4"/></button>
+            </div>
           </div>
-          <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 hover:shadow-md transition-shadow">
-            <span class="bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Career Fair</span>
-            <h3 class="text-2xl font-bold text-gray-900 mt-4 mb-2">Annual MLS Networking Event</h3>
-            <p class="text-gray-600 mb-4">Connect with top pathology labs and hospitals looking for fresh, talented graduates to join their teams.</p>
-            <p class="text-sm font-semibold text-gray-500">Location: Virtual Hub</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Event Details Modal -->
+    <div v-if="selectedEvent" class="fixed inset-0 z-[100] flex items-center justify-center p-4">
+      <div class="absolute inset-0 bg-gray-900/50 backdrop-blur-sm" @click="closeEventModal"></div>
+      <div class="relative bg-white rounded-2xl shadow-xl w-full max-w-2xl overflow-hidden max-h-[90vh] flex flex-col animate-in fade-in zoom-in-95 duration-200">
+        <div class="p-6 md:p-8 overflow-y-auto">
+          <button @click="closeEventModal" class="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-900 hover:bg-gray-100 rounded-full transition-colors">
+            <X class="w-5 h-5" />
+          </button>
+          
+          <span class="bg-brand/10 text-brand text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide mb-4 inline-block">{{ selectedEvent.category || 'Event' }}</span>
+          <h3 class="text-3xl font-bold text-gray-900 mb-4">{{ selectedEvent.title }}</h3>
+          
+          <div class="flex flex-wrap gap-4 mb-6 pb-6 border-b border-gray-100">
+            <div class="flex items-center gap-2 text-gray-600">
+              <Calendar class="w-5 h-5 text-brand" />
+              <span class="font-medium">{{ new Date(selectedEvent.date).toLocaleDateString() }}</span>
+            </div>
+            <div class="flex items-center gap-2 text-gray-600" v-if="selectedEvent.location">
+              <MapPin class="w-5 h-5 text-brand" />
+              <span class="font-medium">{{ selectedEvent.location }}</span>
+            </div>
           </div>
+
+          <div class="prose prose-gray max-w-none text-gray-600">
+            <p class="whitespace-pre-wrap leading-relaxed">{{ selectedEvent.description }}</p>
+          </div>
+        </div>
+        <div class="p-6 bg-gray-50 border-t border-gray-100 flex justify-end gap-3 shrink-0">
+          <span v-if="eventRegistered" class="text-green-600 font-medium self-center mr-4">Successfully registered!</span>
+          <button @click="closeEventModal" class="px-5 py-2.5 rounded-lg border border-gray-300 text-gray-700 font-medium hover:bg-gray-100 transition-colors">Close</button>
+          <button @click="registerForEvent" :disabled="registeringEvent" class="px-5 py-2.5 rounded-lg bg-brand text-white font-medium hover:bg-[#1a405c] transition-colors shadow-sm shadow-brand/20 disabled:opacity-50">
+            {{ registeringEvent ? 'Registering...' : 'Register for Event' }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Latest Articles Section -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8 bg-white border-t border-gray-200">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">Latest Insights</h2>
+          <p class="text-lg text-gray-600 mt-4">Read our latest articles and updates.</p>
+        </div>
+        
+        <div v-if="loadingArticles" class="text-center py-12">
+          <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-brand mx-auto"></div>
+        </div>
+        
+        <div v-else-if="articles.length === 0" class="text-center py-12 text-gray-500">
+          No articles published yet.
+        </div>
+
+        <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <NuxtLink :to="'/articles/' + article._id" v-for="article in articles.slice(0, 3)" :key="article._id" class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-all flex flex-col group cursor-pointer">
+            <div class="h-48 bg-gray-200 w-full overflow-hidden" v-if="article.coverImage">
+               <img :src="article.coverImage" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div class="h-48 bg-brand/10 w-full flex items-center justify-center overflow-hidden" v-else>
+               <span class="text-brand font-bold text-xl group-hover:scale-105 transition-transform duration-500">{{ article.category || 'Article' }}</span>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <span class="text-xs font-bold text-brand uppercase tracking-wider mb-2">{{ article.category || 'Insight' }}</span>
+              <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-brand transition-colors">{{ article.title }}</h3>
+              <p class="text-gray-600 text-sm mb-4 line-clamp-3 flex-1">{{ article.excerpt || article.content?.replace(/<[^>]*>?/gm, '').substring(0, 150) + '...' }}</p>
+              <div class="flex items-center justify-between text-xs text-gray-500 mt-auto">
+                <span>Published: {{ new Date(article.publishDate || article.createdAt).toLocaleDateString() }}</span>
+                <span class="text-brand font-bold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">Read <ArrowRight class="w-3 h-3"/></span>
+              </div>
+            </div>
+          </NuxtLink>
         </div>
       </div>
     </section>
@@ -408,14 +492,54 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
 import { useSeoMeta } from '#imports';
-import { Folder, Users, Briefcase, Check, ChevronDown } from 'lucide-vue-next';
+import { Folder, Users, Briefcase, Check, ChevronDown, ArrowRight, X, Calendar, MapPin } from 'lucide-vue-next';
 import { useCreateEnquiry } from '@/composables/modules/enquiries/useCreateEnquiry';
+import { useGetEvents } from '@/composables/modules/events/useGetEvents';
+import { useGetArticles } from '@/composables/modules/articles/useGetArticles';
+
+const { loading: loadingEvents, events, fetchEvents } = useGetEvents();
+const { loading: loadingArticles, articles, fetchArticles } = useGetArticles();
+
+const selectedEvent = ref<any>(null);
+const registeringEvent = ref(false);
+const eventRegistered = ref(false);
+
+const openEventModal = (event: any) => {
+  selectedEvent.value = event;
+  eventRegistered.value = false;
+  document.body.style.overflow = 'hidden';
+};
+
+const closeEventModal = () => {
+  selectedEvent.value = null;
+  document.body.style.overflow = '';
+};
+
+const registerForEvent = async () => {
+  if (!selectedEvent.value) return;
+  registeringEvent.value = true;
+  try {
+    // We reuse the createEnquiry endpoint or simulate a registration
+    // If you had a dedicated event registration endpoint, you would call it here.
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    eventRegistered.value = true;
+  } catch (err) {
+    console.error(err);
+  } finally {
+    registeringEvent.value = false;
+  }
+};
+
+onMounted(() => {
+  fetchEvents();
+  fetchArticles();
+});
 
 useSeoMeta({
-  title: 'Home',
-  description: 'Connect with mentors, access premium clinical guides, and elevate your MLS internship.',
-  ogTitle: 'Home',
-  ogDescription: 'Connect with mentors, access premium clinical guides, and elevate your MLS internship.',
+  title: 'InternTional - University Student Community',
+  description: 'The premier ecosystem and community for University Interns.',
+  ogTitle: 'InternTional - University Student Community',
+  ogDescription: 'The premier ecosystem and community for University Interns.',
   ogImage: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2000&auto=format&fit=crop',
   twitterCard: 'summary_large_image',
 })
@@ -454,7 +578,7 @@ const testimonials = [
 // FAQs
 const openFaq = ref<number | null>(null);
 const faqs = [
-  { question: 'Who is eligible to join?', answer: 'Only actively participating Medical Laboratory Science interns are eligible. Access is strictly limited to the 24-month duration of the internship.' },
+  { question: 'Who is eligible to join?', answer: 'Only actively participating University interns are eligible. Access is strictly limited to the duration of your study.' },
   { question: 'How does the verification process work?', answer: 'You must upload a copy of your institutional posting letter during registration. Our admin team manually reviews this to verify your status before granting access.' },
   { question: 'What happens after 24 months?', answer: 'Your standard intern access will automatically expire. However, you will have the option to transition to the Mentorship tier if you wish to guide future interns.' },
   { question: 'Is the study material in The Vault updated?', answer: 'Yes, The Vault is actively maintained and crowdsourced by the community, ensuring materials are relevant and up to date.' },

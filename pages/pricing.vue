@@ -4,15 +4,15 @@
     <section class="pt-24 pb-16">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <span class="text-sm font-semibold text-brand tracking-wider uppercase mb-3 block">Plans</span>
-        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Professional membership</h1>
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Intern membership</h1>
         <p class="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
-          Choose the plan that fits your career goals.
+          Choose the plan that fits your academic needs.
         </p>
 
-        <!-- Toggle (Monthly/Yearly visual only for now as requested by mockup) -->
+        <!-- Toggle -->
         <div class="inline-flex bg-gray-200 rounded-lg p-1 mb-16">
-          <button class="px-6 py-2 rounded-md bg-white text-gray-900 font-medium shadow-sm">Monthly</button>
-          <button class="px-6 py-2 rounded-md text-gray-600 font-medium hover:text-gray-900">Yearly</button>
+          <button @click="billingCycle = 'monthly'" :class="['px-6 py-2 rounded-md font-medium', billingCycle === 'monthly' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-600 hover:text-gray-900']">Monthly</button>
+          <button @click="billingCycle = 'yearly'" :class="['px-6 py-2 rounded-md font-medium', billingCycle === 'yearly' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-600 hover:text-gray-900']">Yearly</button>
         </div>
 
         <div v-if="loading" class="text-center py-12">
@@ -20,41 +20,56 @@
           <p class="text-gray-500 mt-4">Loading plans...</p>
         </div>
 
-        <div v-else-if="subscriptions.length === 0" class="text-center py-12">
-          <p class="text-gray-500 text-lg">No subscription plans available at the moment. Please check back later.</p>
+        <div v-else-if="filteredSubscriptions.length === 0" class="text-center py-12">
+          <p class="text-gray-500 text-lg">No subscription plans available for this billing cycle.</p>
         </div>
 
-        <!-- Featured Plan Card (assuming the first plan is the default/starter) -->
-        <div v-else-if="subscriptions.length > 0" class="max-w-md mx-auto bg-white rounded-xl shadow-lg border border-gray-200 p-8 text-left relative overflow-hidden">
-          <div class="absolute top-0 left-0 w-full h-1 bg-brand"></div>
-          <h3 class="text-xl font-bold text-gray-900 mb-1">{{ subscriptions[0].name }}</h3>
-          <p class="text-sm text-gray-500 mb-6">{{ subscriptions[0].description }}</p>
-          
-          <div class="mb-6 pb-6 border-b border-gray-100">
-            <span class="text-5xl font-extrabold text-gray-900 tracking-tight">₦{{ (subscriptions[0].price / 100).toLocaleString() }}</span>
+        <!-- Featured Plan Cards -->
+        <div v-else-if="filteredSubscriptions.length > 0" class="mt-8 flex flex-wrap justify-center gap-8 max-w-5xl mx-auto">
+          <div v-for="plan in filteredSubscriptions" :key="plan._id" class="w-full md:w-[400px] bg-white rounded-3xl shadow-xl shadow-brand/5 border border-gray-100 p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 relative overflow-hidden group">
+            <!-- Decorative Background Element -->
+            <div class="absolute top-0 right-0 w-64 h-64 bg-brand/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none group-hover:bg-brand/10 transition-colors"></div>
+            
+            <div class="relative z-10">
+              <span class="inline-block bg-brand/10 text-brand text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4">{{ plan.durationMonths === 1 ? 'Monthly' : 'Annual' }}</span>
+              <h3 class="text-3xl font-extrabold text-gray-900 mb-2 tracking-tight">{{ plan.name }}</h3>
+              <p class="text-sm text-gray-500 mb-8">{{ plan.description }}</p>
+              
+              <div class="mb-8 flex items-baseline gap-2 border-b border-gray-100 pb-8">
+                <span class="text-5xl font-black text-gray-900 tracking-tighter">₦{{ (plan.price / 100).toLocaleString() }}</span>
+                <span class="text-gray-500 font-medium">/{{ plan.durationMonths === 1 ? 'mo' : 'yr' }}</span>
+              </div>
+
+              <button 
+                @click="handleSubscribe(plan)" 
+                :disabled="paymentLoading"
+                class="w-full bg-gray-900 text-white hover:bg-brand py-4 rounded-xl font-bold text-lg transition-colors flex justify-center items-center gap-2 mb-8 shadow-md disabled:opacity-50"
+              >
+                <span v-if="paymentLoading && selectedPlanId === plan._id">
+                  <div class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                </span>
+                <span v-else>Select {{ plan.name }}</span>
+              </button>
+
+              <div class="space-y-4">
+                <p class="text-sm font-bold text-gray-900 uppercase tracking-wider">What's included</p>
+                <ul class="space-y-3">
+                  <li v-for="(feature, idx) in plan.features" :key="idx" class="flex items-start">
+                    <div class="flex-shrink-0 w-5 h-5 rounded-full bg-brand/10 flex items-center justify-center mr-3 mt-0.5">
+                      <Check class="h-3 w-3 text-brand" />
+                    </div>
+                    <span class="text-sm text-gray-600 font-medium">{{ feature }}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
-
-          <button 
-            @click="handleSubscribe(subscriptions[0])" 
-            :disabled="paymentLoading"
-            class="w-full bg-brand text-white hover:bg-[#1f4e70] py-3 rounded-lg font-medium transition-colors flex justify-center items-center gap-2 mb-6"
-          >
-            <span v-if="paymentLoading && selectedPlanId === subscriptions[0]._id">Processing...</span>
-            <span v-else>Select {{ subscriptions[0].name }}</span>
-          </button>
-
-          <ul class="space-y-3">
-            <li v-for="(feature, idx) in subscriptions[0].features" :key="idx" class="flex items-start">
-              <Check class="h-5 w-5 text-brand flex-shrink-0 mr-3" />
-              <span class="text-sm text-gray-600">{{ feature }}</span>
-            </li>
-          </ul>
         </div>
       </div>
     </section>
 
     <!-- Plan details (Comparison Table) -->
-    <section v-if="subscriptions.length > 1" class="py-16">
+    <section v-if="filteredSubscriptions.length > 1" class="py-16">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
           <span class="text-sm font-semibold text-brand tracking-wider uppercase mb-2 block">Compare</span>
@@ -67,7 +82,7 @@
             <thead>
               <tr>
                 <th class="p-6 bg-gray-50 border-b border-gray-200 w-1/4"></th>
-                <th v-for="plan in subscriptions" :key="'head-'+plan._id" class="p-6 bg-gray-50 border-b border-gray-200 border-l w-1/4 text-center">
+                <th v-for="plan in filteredSubscriptions" :key="'head-'+plan._id" class="p-6 bg-gray-50 border-b border-gray-200 border-l w-1/4 text-center">
                   <h4 class="font-bold text-gray-900 mb-1">{{ plan.name }}</h4>
                   <div class="text-2xl font-extrabold text-gray-900 mb-1">₦{{ (plan.price / 100).toLocaleString() }}</div>
                   <p class="text-xs text-gray-500 mb-4">Per {{ plan.durationMonths > 1 ? plan.durationMonths + ' months' : 'month' }}</p>
@@ -88,7 +103,7 @@
               <!-- Since we don't have a strict feature matrix in the DB schema, we'll extract unique features from all plans -->
               <tr v-for="feature in allUniqueFeatures" :key="feature">
                 <td class="p-4 text-sm text-gray-700 font-medium">{{ feature }}</td>
-                <td v-for="plan in subscriptions" :key="plan._id+'-'+feature" class="p-4 text-center border-l border-gray-100">
+                <td v-for="plan in filteredSubscriptions" :key="plan._id+'-'+feature" class="p-4 text-center border-l border-gray-100">
                   <Check v-if="plan.features.includes(feature)" class="w-5 h-5 text-gray-900 mx-auto" />
                   <span v-else class="text-gray-300">-</span>
                 </td>
@@ -104,8 +119,8 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="mb-16 max-w-2xl">
           <span class="text-sm font-semibold text-brand tracking-wider uppercase mb-2 block">Included</span>
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">Everything you need to build your career</h2>
-          <p class="text-lg text-gray-600 mb-6">Comprehensive tools, resources, and connections to get you through your NYSC program and into a successful career.</p>
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Everything you need to succeed in your studies</h2>
+          <p class="text-lg text-gray-600 mb-6">Comprehensive tools, resources, and connections to get you through exams, lab practicals, and into a successful academic program.</p>
           <NuxtLink to="/register" class="text-brand font-medium hover:text-[#1f4e70] flex items-center gap-2">
             Explore <ArrowRight class="w-4 h-4" />
           </NuxtLink>
@@ -119,7 +134,7 @@
             </div>
             <div class="md:w-1/2">
               <h3 class="text-2xl font-bold text-gray-900 mb-4">Vault access</h3>
-              <p class="text-gray-600">Downloadable resources, templates, and frameworks. From CV writing guides to lab protocols and internship logs.</p>
+              <p class="text-gray-600">Downloadable resources, templates, and frameworks. From study guides to lab protocols and practical logs.</p>
             </div>
           </div>
           
@@ -130,7 +145,7 @@
             </div>
             <div class="md:w-1/2">
               <h3 class="text-2xl font-bold text-gray-900 mb-4">Mentorship connections</h3>
-              <p class="text-gray-600">Connect with senior professionals in the field. Get guidance on your career trajectory, advice on navigating the hospital environment, and more.</p>
+              <p class="text-gray-600">Connect with senior professionals in the field. Get guidance on your academic trajectory, advice on navigating the university environment, and more.</p>
             </div>
           </div>
           
@@ -140,8 +155,8 @@
               <div class="rounded-xl shadow-md w-full h-64 bg-gray-200"></div>
             </div>
             <div class="md:w-1/2">
-              <h3 class="text-2xl font-bold text-gray-900 mb-4">Job Board listings</h3>
-              <p class="text-gray-600">Exclusive access to specific roles across hospitals, clinics, and labs that are actively seeking trained professionals.</p>
+              <h3 class="text-2xl font-bold text-gray-900 mb-4">Academic & Entry-level listings</h3>
+              <p class="text-gray-600">Exclusive access to specific research assistant positions and study groups across top institutions.</p>
             </div>
           </div>
         </div>
@@ -189,7 +204,7 @@
           <details class="group bg-white rounded-lg border border-gray-200 open:ring-1 open:ring-gray-200">
             <summary class="flex items-center justify-between p-6 cursor-pointer font-semibold text-gray-900">
               What is your refund policy?
-建设              <span class="transition group-open:rotate-180">+</span>
+              <span class="transition group-open:rotate-180">+</span>
             </summary>
             <div class="px-6 pb-6 text-gray-600">
               We offer a 7-day money-back guarantee if you're not satisfied. Contact our support team to request a refund within this period.
@@ -224,17 +239,26 @@ useHead({ title: 'Intern Membership | InternTional Ecosystem' });
 
 const router = useRouter();
 const route = useRoute();
-const { isAuthenticated } = useAuth();
+const { isAuthenticated, user } = useAuth();
 const { loading, subscriptions, fetchActive } = useSubscriptions();
 const { loading: paymentLoading, initializePayment, verifyPayment } = usePayments();
 
 const selectedPlanId = ref<string | null>(null);
 const verifying = ref(false);
+const billingCycle = ref<'monthly' | 'yearly'>('monthly');
+
+const filteredSubscriptions = computed(() => {
+  if (!subscriptions.value) return [];
+  if (billingCycle.value === 'monthly') {
+    return subscriptions.value.filter(p => p.durationMonths === 1);
+  }
+  return subscriptions.value.filter(p => p.durationMonths === 12);
+});
 
 const allUniqueFeatures = computed(() => {
-  if (!subscriptions.value) return [];
+  if (!filteredSubscriptions.value) return [];
   const features = new Set<string>();
-  subscriptions.value.forEach(plan => {
+  filteredSubscriptions.value.forEach(plan => {
     if(plan.features) {
       plan.features.forEach((f: string) => features.add(f));
     }
@@ -266,8 +290,17 @@ onMounted(async () => {
 
 const handleSubscribe = async (plan: any) => {
   if (!isAuthenticated.value) {
-    router.push(`/login?returnUrl=/pricing`);
+    router.push(`/register?planId=${plan._id}`);
     return;
+  }
+
+  if (user.value?.activeSubscription) {
+    if (user.value.activeSubscription === plan._id || user.value.activeSubscription._id === plan._id) {
+      alert('You are already subscribed to this plan.');
+      return;
+    }
+    const confirmUpgrade = confirm(`You currently have an active plan. Do you want to upgrade/switch to ${plan.name}?`);
+    if (!confirmUpgrade) return;
   }
 
   selectedPlanId.value = plan._id;
