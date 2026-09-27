@@ -54,9 +54,6 @@
               <UiInput id="password" label="Password" type="password" v-model="form.password" required minlength="8" placeholder="Minimum 8 characters" />
             </div>
 
-            <UiInput id="email" label="Email Address" type="email" v-model="form.email" required placeholder="jane.doe@example.com" />
-            <UiInput id="password" label="Password" type="password" v-model="form.password" required minlength="8" placeholder="Minimum 8 characters" />
-
             <div v-show="step === 2" class="space-y-6">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <UiInput id="country" label="Country of Residence" v-model="form.country" required placeholder="e.g. United Kingdom" />
