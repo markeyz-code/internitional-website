@@ -45,7 +45,7 @@
           </div>
 
           <form @submit.prevent="submitStep" class="space-y-6">
-            <div v-show="step === 1" class="space-y-6">
+            <div v-if="step === 1" class="space-y-6">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <UiInput id="firstName" label="First Name" v-model="form.firstName" required placeholder="Jane" />
                 <UiInput id="lastName" label="Last Name" v-model="form.lastName" required placeholder="Doe" />
@@ -54,7 +54,7 @@
               <UiInput id="password" label="Password" type="password" v-model="form.password" required minlength="8" placeholder="Minimum 8 characters" />
             </div>
 
-            <div v-show="step === 2" class="space-y-6">
+            <div v-if="step === 2" class="space-y-6">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <UiInput id="country" label="Country of Residence" v-model="form.country" required placeholder="e.g. United Kingdom" />
                 <UiInput id="phoneNumber" label="Phone Number" type="tel" v-model="form.phoneNumber" required placeholder="+44 7700 900077" />
