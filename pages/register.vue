@@ -55,7 +55,7 @@
               <UiInput id="password" label="Password" type="password" v-model="form.password" required minlength="8" placeholder="Minimum 8 characters" />
             </div>
 
-            <div v-if="step === 2" class="space-y-6">
+            <div v-else-if="step === 2" class="space-y-6">
               <div class="text-center">
                 <div class="w-16 h-16 bg-blue-50 text-brand rounded-full flex items-center justify-center mx-auto mb-4">
                   <Mail class="w-8 h-8" />
@@ -89,14 +89,14 @@
               </div>
             </div>
 
-            <div v-if="step === 3" class="space-y-6">
+            <div v-else-if="step === 3" class="space-y-6">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <UiSelectSearch
                   id="country"
                   label="Country of Residence"
                   v-model="selectedCountryCode"
                   :options="countries"
-                  required
+                  :required="step === 3"
                   placeholder="Select a country"
                 />
                 <UiInput 
@@ -105,7 +105,7 @@
                   type="tel" 
                   :modelValue="form.phoneNumber" 
                   @update:modelValue="onPhoneInput"
-                  required 
+                  :required="step === 3" 
                   placeholder="+44 7700 900077" 
                 />
               </div>
@@ -116,7 +116,7 @@
                   label="Professional Background / Department"
                   v-model="form.professionalBackground"
                   :options="departments"
-                  required
+                  :required="step === 3"
                   placeholder="Select Department"
                 />
               </div>
@@ -226,7 +226,7 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
 })
 
-import { ref, watch, onMounted } from 'vue';
+import { ref, watch, onMounted, onUnmounted, computed } from 'vue';
 import { ArrowRight, UploadCloud, CheckCircle2, Lock, Mail } from 'lucide-vue-next';
 import { useRegister } from '@/composables/modules/auth/useRegister';
 import UiInput from '@/components/ui/Input.vue';
@@ -260,6 +260,52 @@ const { loading, uploadProgress, error, register, sendOtp, verifyOtp } = useRegi
 const form = ref({ firstName: '', lastName: '', email: '', password: '', otp: '', country: '', phoneNumber: '', professionalBackground: '', planId: '', file: null as File | null });
 const success = ref(false);
 const step = ref(1);
+
+const otpArray = ref(['', '', '', '']);
+const otpRefs = ref<HTMLInputElement[]>([]);
+const countdown = ref(0);
+let countdownInterval: any = null;
+
+const formattedCountdown = computed(() => {
+  const m = Math.floor(countdown.value / 60).toString().padStart(2, '0');
+  const s = (countdown.value % 60).toString().padStart(2, '0');
+  return `${m}:${s}`;
+});
+
+const startCountdown = () => {
+  countdown.value = 600;
+  clearInterval(countdownInterval);
+  countdownInterval = setInterval(() => {
+    if (countdown.value > 0) {
+      countdown.value--;
+    } else {
+      clearInterval(countdownInterval);
+    }
+  }, 1000);
+};
+
+const handleOtpInput = (idx: number, e: Event) => {
+  const val = (e.target as HTMLInputElement).value;
+  if (val && idx < 3) {
+    otpRefs.value[idx + 1]?.focus();
+  }
+  form.value.otp = otpArray.value.join('');
+};
+
+const handleOtpKeydown = (idx: number, e: KeyboardEvent) => {
+  if (e.key === 'Backspace' && !otpArray.value[idx] && idx > 0) {
+    otpRefs.value[idx - 1]?.focus();
+  }
+};
+
+const resendCode = async () => {
+  const success = await sendOtp(form.value.email, form.value.firstName, 'intern');
+  if (success) {
+    startCountdown();
+  }
+};
+
+onUnmounted(() => clearInterval(countdownInterval));
 
 const selectedCountryCode = ref('');
 const departments = ref<{label: string; value: string}[]>([]);

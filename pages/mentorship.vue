@@ -24,13 +24,18 @@
         </div>
         <div class="mb-6">
           <label class="block text-sm font-medium text-gray-700 mb-1">Area of Interest</label>
-          <select v-model="form.interest" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand outline-none">
-            <option value="" disabled>Select specialization</option>
-            <option value="Lab Management">Lab Management</option>
-            <option value="Clinical Chemistry">Clinical Chemistry</option>
-            <option value="Operations">Operations</option>
-            <option value="Quality Assurance">Quality Assurance</option>
-          </select>
+          <UiSelect
+            id="interest"
+            v-model="form.interest"
+            :required="true"
+            placeholder="Select specialization"
+            :options="[
+              { label: 'Lab Management', value: 'Lab Management' },
+              { label: 'Clinical Chemistry', value: 'Clinical Chemistry' },
+              { label: 'Operations', value: 'Operations' },
+              { label: 'Quality Assurance', value: 'Quality Assurance' }
+            ]"
+          />
         </div>
         <button type="submit" :disabled="loading" class="w-full px-6 py-2.5 bg-brand text-white rounded font-medium hover:bg-[#1f4e70] transition-colors disabled:opacity-50">
           {{ loading ? 'Submitting...' : 'Request a Mentor' }}
