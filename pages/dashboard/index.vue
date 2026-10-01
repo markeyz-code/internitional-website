@@ -141,8 +141,17 @@ const subscription = computed(() => {
   return profile.value?.activeSubscription || null;
 });
 
-const handleLogout = () => {
-  if (window.confirm("Are you sure you want to log out of your session?")) {
+const { confirm } = useCustomModal();
+
+const handleLogout = async () => {
+  const confirmed = await confirm({
+    title: 'Sign Out',
+    message: 'Are you sure you want to log out of your session?',
+    confirmText: 'Sign Out',
+    cancelText: 'Cancel',
+    type: 'danger',
+  });
+  if (confirmed) {
     clearAuth();
     router.push('/login');
   }
