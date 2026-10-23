@@ -99,10 +99,12 @@
 
           <div class="border border-dashed border-gray-300 rounded-xl p-4 bg-gray-50 text-center">
             <label class="block text-xs font-bold text-gray-800 mb-1">
-              Upload CV / Resume <span class="text-brand font-normal">(Optional)</span>
+              Upload CV / Resume <span :class="siteSettings.sections?.cvUploadMandatory ? 'text-rose-600' : 'text-brand font-normal'">({{ siteSettings.sections?.cvUploadMandatory ? 'Required *' : 'Optional' }})</span>
             </label>
-            <p class="text-[11px] text-gray-500 mb-2">Not required! If you do not have a formal CV, your rotation summary and profile will be used.</p>
-            <input type="file" accept=".pdf,.doc,.docx" @change="handleFile" class="text-xs text-gray-500 file:mr-2 file:py-1 file:px-3 file:rounded-md file:border-0 file:text-xs file:bg-brand/10 file:text-brand hover:file:bg-brand/20" />
+            <p class="text-[11px] text-gray-500 mb-2">
+              {{ siteSettings.sections?.cvUploadMandatory ? 'A valid CV/resume document (.pdf, .doc, .docx) is required to apply for this listing.' : 'Not required! If you do not have a formal CV, your rotation summary and profile will be used.' }}
+            </p>
+            <input type="file" accept=".pdf,.doc,.docx" :required="siteSettings.sections?.cvUploadMandatory" @change="handleFile" class="text-xs text-gray-500 file:mr-2 file:py-1 file:px-3 file:rounded-md file:border-0 file:text-xs file:bg-brand/10 file:text-brand hover:file:bg-brand/20" />
           </div>
 
           <div class="flex gap-3 pt-2">
@@ -201,6 +203,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useAuth } from '@/composables/core/useAuth';
+import { useSiteSettings } from '@/composables/useSiteSettings';
 import { useSeoMeta, useHead } from '#imports';
 import { Star, CheckCircle2 } from 'lucide-vue-next';
 
@@ -212,6 +215,7 @@ useSeoMeta({
 useHead({ title: 'Career Hub & Placements | InternTional MLS Ecosystem' });
 
 const { isAuthenticated } = useAuth();
+const { settings: siteSettings } = useSiteSettings('interntional');
 
 const jobsList = ref([
   {
