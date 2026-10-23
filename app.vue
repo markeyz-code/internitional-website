@@ -18,9 +18,9 @@ useHead({
 });
 
 useSeoMeta({
-  description: 'A complete ecosystem designed exclusively for the demands of the modern Medical Laboratory Science career.',
-  ogTitle: 'InternTional Ecosystem',
-  ogDescription: 'A complete ecosystem designed exclusively for the demands of the modern Medical Laboratory Science career.',
+  description: 'The premier ecosystem and digital community designed exclusively for the modern Medical Laboratory Science Intern & Professional Community.',
+  ogTitle: 'InternTional Ecosystem - MLS Intern & Professional Community',
+  ogDescription: 'The premier ecosystem and digital community designed exclusively for the modern Medical Laboratory Science Intern & Professional Community.',
   ogImage: '/images/lab_hero_scientist_1789856614097.jpg',
   twitterCard: 'summary_large_image',
 });

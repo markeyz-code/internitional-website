@@ -36,7 +36,7 @@
 
         <div v-else>
           <h2 class="text-3xl font-medium text-gray-900 mb-2">Apply for Membership</h2>
-          <p class="text-gray-500 mb-8">InternTional is exclusive to verified MLS interns.</p>
+          <p class="text-gray-500 mb-8">InternTional is exclusive to verified Medical Laboratory Science interns and professionals.</p>
 
           <!-- Step Indicators -->
           <div class="flex items-center mb-8 gap-2">
@@ -176,9 +176,16 @@
               </div>
             </div>
 
-            <div v-if="error" class="text-red-700 text-sm p-4 bg-red-50 border border-red-200 flex items-start gap-3 rounded">
-              <Lock class="w-5 h-5 flex-shrink-0 mt-0.5" />
-              <span>{{ error }}</span>
+            <div v-if="error" class="text-red-700 text-sm p-4 bg-red-50 border border-red-200 flex flex-col gap-2 rounded">
+              <div class="flex items-start gap-3">
+                <Lock class="w-5 h-5 flex-shrink-0 mt-0.5 text-red-600" />
+                <span class="font-medium">{{ error }}</span>
+              </div>
+              <div class="text-xs text-gray-600 pl-8">
+                Need immediate help? Contact our support team at
+                <a href="mailto:support@medlabconvo.com" class="text-brand font-semibold hover:underline">support@medlabconvo.com</a>
+                or WhatsApp <strong class="text-gray-900">+234 813 000 0000</strong>.
+              </div>
             </div>
 
             <div class="flex items-center gap-4 mt-4">
@@ -308,19 +315,59 @@ const resendCode = async () => {
 onUnmounted(() => clearInterval(countdownInterval));
 
 const selectedCountryCode = ref('');
-const departments = ref<{label: string; value: string}[]>([]);
-const plans = ref<any[]>([]);
+
+const DEFAULT_DEPARTMENTS = [
+  { label: 'Chemical Pathology / Clinical Chemistry', value: 'CHEMICAL_PATHOLOGY' },
+  { label: 'Hematology & Blood Transfusion', value: 'HEMATOLOGY' },
+  { label: 'Medical Microbiology & Parasitology', value: 'MICROBIOLOGY' },
+  { label: 'Histopathology / Morbid Anatomy', value: 'HISTOPATHOLOGY' },
+  { label: 'Medical Virology & Immunology', value: 'MEDICAL_VIROLOGY' },
+  { label: 'General Clinical Laboratory Practice', value: 'GENERAL' },
+];
+
+const DEFAULT_PLANS = [
+  {
+    _id: 'default-plan-intern-annual',
+    name: 'Intern Professional Annual Access',
+    description: 'Comprehensive 12-month access to clinical bench guides, expert mentorship, and career hub.',
+    price: 3000000,
+    durationMonths: 12
+  },
+  {
+    _id: 'default-plan-intern-quarterly',
+    name: 'Intern Clinical Rotation Access (3 Months)',
+    description: 'Specialized 3-month access tailored for active laboratory clinical rotations.',
+    price: 900000,
+    durationMonths: 3
+  }
+];
+
+const departments = ref<{label: string; value: string}[]>(DEFAULT_DEPARTMENTS);
+const plans = ref<any[]>(DEFAULT_PLANS);
 
 const fetchData = async () => {
   try {
-    const [deptRes, plansRes] = await Promise.all([
-      GATEWAY_ENDPOINT.get('/departments'),
-      GATEWAY_ENDPOINT.get('/subscriptions')
-    ]);
-    departments.value = deptRes.data || [];
-    plans.value = plansRes.data || plansRes;
+    const deptRes = await GATEWAY_ENDPOINT.get('/departments');
+    if (deptRes && Array.isArray(deptRes.data) && deptRes.data.length > 0) {
+      departments.value = deptRes.data;
+    }
   } catch (err) {
-    console.error('Failed to fetch data:', err);
+    console.warn('Using default departments list:', err);
+  }
+
+  try {
+    const plansRes = await GATEWAY_ENDPOINT.get('/subscriptions');
+    const plansData = plansRes?.data || plansRes;
+    if (Array.isArray(plansData) && plansData.length > 0) {
+      plans.value = plansData;
+    }
+  } catch (err) {
+    console.warn('Using default plans list:', err);
+  }
+
+  // Pre-select first plan if none selected
+  if (!form.value.planId && plans.value.length > 0) {
+    form.value.planId = plans.value[0]._id;
   }
 };
 
