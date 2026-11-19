@@ -1,6 +1,6 @@
 
 <template>
-  <div class="h-screen w-full flex bg-[#F8FAFC] overflow-hidden font-sans text-sm md:text-base">
+  <div class="h-screen w-full flex bg-[#F4F7FA] overflow-hidden font-sans text-sm md:text-base">
     <!-- Mobile Sidebar Backdrop -->
     <div 
       v-if="isMobileSidebarOpen"
@@ -13,7 +13,7 @@
       :class="[
         isSidebarCollapsed ? 'lg:w-20 w-64' : 'w-64',
         isMobileSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0',
-        'fixed lg:relative inset-y-0 left-0 bg-[#0F172A] text-slate-300 flex-shrink-0 flex flex-col z-50 transition-all duration-300 border-r border-slate-800 h-full'
+        'fixed lg:relative inset-y-0 left-0 bg-navy-950 text-slate-300 flex-shrink-0 flex flex-col z-50 transition-all duration-300 border-r border-slate-800 h-full'
       ]"
     >
       <!-- Desktop Collapse Toggle -->
@@ -28,8 +28,11 @@
       <!-- Logo Area -->
       <div class="h-16 flex items-center px-6 border-b border-white/10 relative overflow-hidden" :class="isSidebarCollapsed ? 'lg:justify-center lg:px-0' : ''">
         <NuxtLink to="/dashboard/overview" class="flex items-center gap-3 relative z-10" @click="isMobileSidebarOpen = false">
-          <img src="~/assets/logo-icon.png" class="h-6 w-auto shrink-0" alt="InternTional Logo" />
-          <span :class="isSidebarCollapsed ? 'lg:hidden' : ''" class="text-lg font-bold text-white tracking-tight">Portal</span>
+          <BrandLogo variant="white" class="h-7 shrink-0" :class="isSidebarCollapsed ? 'lg:hidden' : ''" />
+          <div v-if="isSidebarCollapsed" class="hidden lg:flex w-8 h-8 rounded-xl bg-brand items-center justify-center shadow-sm shrink-0">
+            <Sparkles class="w-4 h-4 text-white" />
+          </div>
+          <span :class="isSidebarCollapsed ? 'lg:hidden' : ''" class="text-lg font-bold text-white tracking-tight">InternTional</span>
         </NuxtLink>
       </div>
       
@@ -92,7 +95,7 @@
       <!-- User Profile Profile -->
       <div class="mt-auto p-3 m-3 bg-white/5 border border-white/10 rounded-xl backdrop-blur-sm relative z-10">
         <div class="flex items-center gap-3 mb-3" :class="isSidebarCollapsed ? 'lg:justify-center' : ''">
-          <div class="w-8 h-8 rounded-full bg-[#1f4e70] flex items-center justify-center text-white font-bold text-sm shadow-inner shrink-0">
+          <div class="w-8 h-8 rounded-full bg-[#21506F] flex items-center justify-center text-white font-bold text-sm shadow-inner shrink-0">
             {{ userInitial }}
           </div>
           <div :class="isSidebarCollapsed ? 'lg:hidden' : ''" class="flex-1 min-w-0">
@@ -108,26 +111,28 @@
     </aside>
 
     <!-- Main Wrapper -->
-    <div class="flex-1 flex flex-col min-w-0 bg-[#F8FAFC]">
+    <div class="flex-1 flex flex-col min-w-0 bg-[#F4F7FA]">
       
       <!-- Header -->
-      <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-4 lg:px-6 sticky top-0 z-30">
+      <header class="h-16 bg-white/80 backdrop-blur-md border-b border-navy-100 flex items-center justify-between px-4 lg:px-6 sticky top-0 z-30">
         <!-- Mobile Menu Toggle -->
         <div class="flex items-center gap-2 lg:gap-4">
           <button @click="toggleMobileSidebar" class="lg:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-xl transition-colors shrink-0 cursor-pointer">
             <Menu class="w-5 h-5" />
           </button>
           
-          <div class="hidden md:flex items-center bg-slate-50 rounded-full px-3 py-1.5 w-48 lg:w-64 border border-slate-200 focus-within:border-[#1f4e70] transition-all">
-            <Search class="w-4 h-4 text-slate-400 mr-2" />
-            <input type="text" placeholder="Search anything..." class="bg-transparent border-none outline-none w-full text-xs text-slate-700 placeholder-slate-400" />
+          <div class="hidden md:flex items-center gap-2 text-[10px] font-extrabold uppercase tracking-[0.16em] text-navy-400">
+            <span class="w-1.5 h-1.5 rounded-full bg-teal-500"></span>
+            Member workspace
+            <span class="text-navy-200">/</span>
+            <span class="text-brand">InternTional</span>
           </div>
         </div>
 
         <div class="flex items-center gap-4">
           <NuxtLink
             to="/dashboard/notifications"
-            class="w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-500 hover:bg-slate-50 hover:text-[#1f4e70] transition-colors relative"
+            class="w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-500 hover:bg-slate-50 hover:text-[#21506F] transition-colors relative"
             title="Notifications"
           >
             <Bell class="w-4 h-4" />
@@ -155,7 +160,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import { Folder, Users, Briefcase, LogOut, Menu, CreditCard, LayoutDashboard, Calendar, Search, Bell, ShoppingBag, Target, BookOpen, ChevronLeft, ChevronRight } from 'lucide-vue-next';
+import { Folder, Users, Briefcase, LogOut, Menu, CreditCard, LayoutDashboard, Calendar, Search, Bell, ShoppingBag, Target, BookOpen, ChevronLeft, ChevronRight, Sparkles } from 'lucide-vue-next';
 import { useAuth } from '@/composables/core/useAuth';
 import { useNotifications } from '@/composables/modules/notifications/useNotifications';
 import { useCustomModal } from '@/composables/core/useCustomModal';
@@ -238,7 +243,7 @@ const handleLogout = async () => {
   @apply flex items-center justify-center transition-transform duration-300 group-hover:scale-110;
 }
 .active-nav {
-  @apply bg-[#1f4e70]/20 text-white font-bold border border-[#1f4e70]/30 shadow-[inset_0px_0px_10px_rgba(31,78,112,0.1)];
+  @apply bg-[#21506F]/20 text-white font-bold border border-[#21506F]/30 shadow-[inset_0px_0px_10px_rgba(31,78,112,0.1)];
 }
 .active-nav .nav-icon {
   @apply text-white;

@@ -1,11 +1,11 @@
 <template>
   <div class="min-h-screen bg-white flex">
     <!-- Image Side (Hidden on mobile) -->
-    <div class="hidden lg:block lg:w-1/2 relative bg-gray-100">
+    <div class="hidden lg:block lg:w-1/2 relative bg-navy-50">
       <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2000&auto=format&fit=crop" alt="Global Laboratory" class="absolute inset-0 w-full h-full object-cover" />
       <div class="absolute inset-0 bg-[#0B253A]/90 flex flex-col justify-between p-12">
         <NuxtLink to="/">
-          <img src="~/assets/logo.png" class="h-10 w-auto" alt="Convo Commerce Logo" />
+          <BrandLogo variant="white" class="h-10" />
         </NuxtLink>
         <div class="text-white space-y-4 max-w-md">
           <h2 class="text-4xl font-medium leading-tight">Welcome to the global ecosystem.</h2>
@@ -19,12 +19,12 @@
       <div class="w-full max-w-md">
         <div class="mb-10 lg:hidden text-center">
           <NuxtLink to="/">
-            <img src="~/assets/logo.png" class="h-8 w-auto mx-auto mb-2" alt="Convo Commerce Logo" />
+            <BrandLogo variant="brand" class="h-8 mx-auto mb-2" />
           </NuxtLink>
         </div>
         
-        <h2 class="text-3xl font-medium text-gray-900 mb-2">Setup Your Password</h2>
-        <p class="text-gray-500 mb-8">Choose a strong password to secure your newly approved account.</p>
+        <h2 class="text-3xl font-medium text-navy-950 mb-2">Setup Your Password</h2>
+        <p class="text-navy-400 mb-8">Choose a strong password to secure your newly approved account.</p>
 
         <form v-if="token" @submit.prevent="handleSetup" class="space-y-6">
           <UiInput
