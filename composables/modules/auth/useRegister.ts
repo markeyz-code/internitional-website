@@ -56,6 +56,7 @@ export const useRegister = () => {
     country?: string;
     phoneNumber?: string;
     professionalBackground?: string;
+    verificationDocumentType?: string;
     planId?: string;
     file: File;
   }) => {
@@ -72,6 +73,7 @@ export const useRegister = () => {
         country: payload.country,
         phoneNumber: payload.phoneNumber,
         professionalBackground: payload.professionalBackground,
+        verificationDocumentType: payload.verificationDocumentType,
         planId: payload.planId,
         verificationFileUrl,
       });

@@ -1,48 +1,65 @@
 <template>
-  <div class="min-h-screen bg-white flex">
-    <!-- Image Side -->
-    <div class="hidden lg:block lg:w-1/2 relative bg-gray-100">
-      <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2000&auto=format&fit=crop" alt="Microscope" class="absolute inset-0 w-full h-full object-cover" />
-      <div class="absolute inset-0 bg-brand/90 flex flex-col justify-between p-12">
-        <NuxtLink to="/">
-          <img src="~/assets/logo.jpg" class="h-10 w-auto rounded-lg" alt="InternTional Logo" />
+  <div class="min-h-screen bg-[#F6F8FB] lg:grid lg:grid-cols-[.92fr_1.08fr]">
+    <!-- Brand panel -->
+    <aside class="hidden lg:flex relative overflow-hidden bg-navy-950 p-10 xl:p-12 flex-col justify-between">
+      <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2000&auto=format&fit=crop" alt="Microscope" class="absolute inset-0 w-full h-full object-cover opacity-20" />
+      <div class="absolute inset-0 navy-mesh"></div>
+      <div class="absolute inset-0 brand-grid opacity-[0.08]"></div>
+      <div class="relative z-10 flex items-center justify-between">
+        <NuxtLink to="/" class="flex items-center gap-3">
+          <BrandLogo variant="white" class="h-9" />
+          <span class="font-display text-xl font-bold text-white">InternTional<span class="text-teal-400">.</span></span>
         </NuxtLink>
-        <div class="text-white space-y-4 max-w-md">
-          <h2 class="text-4xl font-medium leading-tight">Join the exclusive community.</h2>
-          <p class="text-blue-100 font-light">Connect with mentors, access premium clinical guides, and elevate your MLS internship.</p>
+        <span class="rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.16em] text-white/60">Professional application</span>
+      </div>
+      <div class="relative z-10 max-w-md">
+        <p class="text-[11px] font-extrabold uppercase tracking-[0.2em] text-teal-300">Membership</p>
+        <h2 class="mt-3 font-display text-4xl xl:text-5xl font-bold leading-[1.02] text-white">Join the verified<br>professional community.</h2>
+        <p class="mt-4 text-sm leading-relaxed text-white/55">A focused clinical home for interns and practising scientists who take the bench seriously.</p>
+        <div class="mt-8 space-y-3.5">
+          <div class="flex items-center gap-3 text-sm text-white/70"><span class="w-8 h-8 rounded-xl bg-teal-400/10 border border-teal-400/20 flex items-center justify-center"><FileText class="w-4 h-4 text-teal-300" /></span> Posting letter, licence or degree</div>
+          <div class="flex items-center gap-3 text-sm text-white/70"><span class="w-8 h-8 rounded-xl bg-brand-400/15 border border-brand-300/20 flex items-center justify-center"><ShieldCheck class="w-4 h-4 text-brand-200" /></span> Manual review in 24–48 hours</div>
+          <div class="flex items-center gap-3 text-sm text-white/70"><span class="w-8 h-8 rounded-xl bg-teal-400/10 border border-teal-400/20 flex items-center justify-center"><Lock class="w-4 h-4 text-teal-300" /></span> No payment until you are approved</div>
         </div>
       </div>
-    </div>
+      <div class="relative z-10 rounded-3xl border border-white/10 bg-white/[0.06] p-5 backdrop-blur">
+        <p class="text-[10px] font-extrabold uppercase tracking-[0.16em] text-teal-300">Built for the bench</p>
+        <p class="mt-1.5 text-sm leading-relaxed text-white/65">One current professional document. A human review. Then the workspace opens.</p>
+      </div>
+    </aside>
 
-    <!-- Form Side -->
-    <div class="w-full lg:w-1/2 flex justify-center p-6 sm:p-8 md:p-12 overflow-y-auto h-screen">
-      <div class="w-full max-w-xl my-auto py-8">
-        <div class="mb-10 lg:hidden text-center">
-          <NuxtLink to="/">
-            <img src="~/assets/logo-icon.png" class="h-8 w-auto mx-auto mb-2" alt="InternTional Logo" />
+    <!-- Form panel -->
+    <main class="relative flex justify-center p-5 sm:p-8 lg:p-10 overflow-y-auto min-h-screen">
+      <div class="absolute inset-0 brand-grid opacity-50 lg:hidden"></div>
+      <div class="relative w-full max-w-2xl my-auto py-4">
+        <div class="mb-5 flex items-center justify-center lg:hidden">
+          <NuxtLink to="/" class="flex items-center gap-2.5">
+            <BrandLogo variant="brand" class="h-8" />
+            <span class="font-display text-lg font-bold text-navy-950">InternTional<span class="text-teal-500">.</span></span>
           </NuxtLink>
         </div>
-        
-        <div v-if="success" class="text-center">
-          <div class="w-16 h-16 bg-green-50 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
-            <ArrowRight class="w-8 h-8" />
+
+        <div class="rounded-[2rem] border border-navy-100 bg-white p-6 sm:p-8 shadow-soft">
+        <div v-if="success" class="text-center py-6">
+          <div class="w-16 h-16 bg-teal-50 text-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <CheckCircle2 class="w-8 h-8" />
           </div>
-          <h2 class="text-3xl font-medium text-gray-900 mb-4">Application Submitted</h2>
-          <p class="text-gray-500 mb-8 max-w-md mx-auto">Your account is pending admin review. You'll receive an email notification once your verification document is approved.</p>
-          <NuxtLink to="/" class="inline-block bg-gray-900 text-white px-6 py-2.5 rounded font-medium hover:bg-gray-800 transition-colors">
-            Return to Homepage
-          </NuxtLink>
+          <p class="text-[11px] font-extrabold uppercase tracking-[0.18em] text-brand">Application received</p>
+          <h2 class="mt-2 font-display text-3xl font-bold text-navy-950">You’re in the review queue.</h2>
+          <p class="mt-3 text-sm leading-relaxed text-navy-500 max-w-md mx-auto">Your document is pending manual review. If approved, you’ll receive an email; sign in then to choose your subscription plan. No payment is taken now.</p>
+          <NuxtLink to="/" class="mt-7 inline-flex items-center justify-center rounded-full bg-navy-950 px-6 py-3 text-sm font-bold text-white hover:bg-navy-900 transition-colors">Return to homepage</NuxtLink>
         </div>
 
         <div v-else>
-          <h2 class="text-3xl font-medium text-gray-900 mb-2">Apply for Membership</h2>
-          <p class="text-gray-500 mb-8">InternTional is exclusive to verified Medical Laboratory Science interns and professionals.</p>
+          <p class="text-[11px] font-extrabold uppercase tracking-[0.18em] text-brand">Professional membership</p>
+          <h2 class="mt-2 font-display text-3xl font-bold text-navy-950">Apply for membership</h2>
+          <p class="mt-1.5 text-sm text-navy-500">InternTional is exclusive to verified Medical Laboratory Science interns and professionals.</p>
 
-          <!-- Step Indicators -->
-          <div class="flex items-center mb-8 gap-2">
-            <div class="flex-1 h-2 rounded-full transition-colors" :class="step >= 1 ? 'bg-brand' : 'bg-gray-200'"></div>
-            <div class="flex-1 h-2 rounded-full transition-colors" :class="step >= 2 ? 'bg-brand' : 'bg-gray-200'"></div>
-            <div class="flex-1 h-2 rounded-full transition-colors" :class="step >= 3 ? 'bg-brand' : 'bg-gray-200'"></div>
+          <div class="mb-7 mt-6 grid grid-cols-3 gap-2">
+            <div v-for="(label, idx) in ['Details', 'Email', 'Verification']" :key="label">
+              <div class="h-1.5 rounded-full transition-colors" :class="step >= idx + 1 ? 'bg-brand' : 'bg-navy-100'"></div>
+              <p class="mt-2 text-[9px] font-extrabold uppercase tracking-[0.12em]" :class="step >= idx + 1 ? 'text-brand' : 'text-navy-300'">{{ label }}</p>
+            </div>
           </div>
 
           <form @submit.prevent="submitStep" class="space-y-6">
@@ -60,8 +77,8 @@
                 <div class="w-16 h-16 bg-blue-50 text-brand rounded-full flex items-center justify-center mx-auto mb-4">
                   <Mail class="w-8 h-8" />
                 </div>
-                <h3 class="text-xl font-medium text-gray-900 mb-2">Verify Your Email</h3>
-                <p class="text-gray-500 mb-1 text-sm">We've sent a 4-digit code to <span class="font-bold">{{ form.email }}</span>.</p>
+                <h3 class="text-xl font-medium text-navy-950 mb-2">Verify Your Email</h3>
+                <p class="text-navy-400 mb-1 text-sm">We've sent a 4-digit code to <span class="font-bold">{{ form.email }}</span>.</p>
                 <button type="button" @click="step = 1" class="text-brand text-sm font-medium hover:underline">Change email address</button>
               </div>
               
@@ -75,12 +92,12 @@
                   v-model="otpArray[idx]" 
                   @input="handleOtpInput(idx, $event)" 
                   @keydown="handleOtpKeydown(idx, $event)" 
-                  class="w-16 h-16 text-center text-3xl font-bold border-2 border-gray-200 rounded-xl text-gray-900 focus:border-brand focus:ring-4 focus:ring-brand/20 outline-none transition-all" 
+                  class="w-14 h-14 text-center text-2xl font-bold border-2 border-navy-100 rounded-2xl text-navy-950 focus:border-brand focus:ring-4 focus:ring-brand/10 outline-none transition-all" 
                 />
               </div>
 
               <div class="text-center">
-                <p v-if="countdown > 0" class="text-sm text-gray-500 mb-2">Code expires in <span class="font-bold text-gray-900">{{ formattedCountdown }}</span></p>
+                <p v-if="countdown > 0" class="text-sm text-navy-400 mb-2">Code expires in <span class="font-bold text-navy-950">{{ formattedCountdown }}</span></p>
                 <p v-else class="text-sm text-red-600 mb-2">Code expired!</p>
                 
                 <button type="button" @click="resendCode" :disabled="countdown > 540 || loading" class="text-brand text-sm font-medium hover:underline disabled:opacity-50 disabled:cursor-not-allowed">
@@ -122,33 +139,16 @@
               </div>
 
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Select Subscription Plan</label>
-                <div class="space-y-3">
-                  <div 
-                    v-for="plan in plans" 
-                    :key="plan._id"
-                    @click="form.planId = plan._id"
-                    class="border rounded-lg p-3 cursor-pointer transition-all flex items-center justify-between"
-                    :class="form.planId === plan._id ? 'border-brand bg-brand/5 ring-1 ring-brand' : 'border-gray-200 hover:border-brand/50'"
-                  >
-                    <div class="flex items-center gap-3">
-                      <div class="w-4 h-4 rounded-full border flex-shrink-0 flex items-center justify-center mt-0.5" :class="form.planId === plan._id ? 'border-brand bg-brand' : 'border-gray-300'">
-                        <div v-if="form.planId === plan._id" class="w-1.5 h-1.5 bg-white rounded-full"></div>
-                      </div>
-                      <div>
-                        <h3 class="font-bold text-gray-900 text-sm">{{ plan.name }}</h3>
-                        <p class="text-xs text-gray-500 line-clamp-1">{{ plan.description }}</p>
-                      </div>
-                    </div>
-                    <div class="text-right flex-shrink-0 ml-4">
-                      <div class="font-bold text-gray-900 text-sm">₦{{ (plan.price / 100).toLocaleString() }}</div>
-                      <div class="text-[10px] text-gray-500 uppercase tracking-wider">/ {{ plan.durationMonths }} mo</div>
-                    </div>
-                  </div>
-                </div>
-                <p class="text-xs text-gray-500 mt-3 flex items-start gap-1.5 bg-gray-50 p-2 rounded">
-                  <span class="text-brand font-bold shrink-0">ⓘ Note:</span>
-                  <span>You will be securely redirected to Paystack to enter your card details. Your card will be automatically charged at the intervals defined by your chosen plan. You can cancel at any time.</span>
+                <label class="block text-[11px] font-extrabold uppercase tracking-[0.1em] text-navy-600 mb-1">Type of Verification Document <span class="text-brand">*</span></label>
+                <UiSelectSearch
+                  id="verificationDocumentType"
+                  v-model="form.verificationDocumentType"
+                  :required="step === 3"
+                  placeholder="Select the document you are uploading"
+                  :options="documentTypes"
+                />
+                <p class="text-xs text-navy-500 mt-2 leading-relaxed">
+                  Accepted: <strong>internship posting letter</strong>, <strong>provisional licence</strong>, <strong>degree/attestation</strong>, or <strong>hospital/lab ID</strong>. The document must show your name and current placement.
                 </p>
               </div>
 
@@ -158,20 +158,24 @@
                   label="Verification Document"
                   :required="step === 3"
                   accept="image/*,.pdf"
-                  placeholder="Upload Posting Letter or Lab ID"
-                  hint="PDF, JPG, PNG (max 5MB)"
+                  placeholder="Upload posting letter, licence, degree or hospital ID"
+                  hint="PDF, JPG, PNG (max 5MB) · current placement"
                   :icon="UploadCloud"
                   :successIcon="CheckCircle2"
                 />
                 
                 <div v-if="uploadProgress > 0 && uploadProgress < 100" class="mt-3">
-                  <div class="flex justify-between text-xs text-gray-600 mb-1">
+                  <div class="flex justify-between text-xs text-navy-500 mb-1">
                     <span>Uploading...</span>
                     <span>{{ uploadProgress }}%</span>
                   </div>
-                  <div class="w-full bg-gray-200 h-1.5 rounded-full overflow-hidden">
+                  <div class="w-full bg-navy-100 h-1.5 rounded-full overflow-hidden">
                     <div class="bg-brand h-full rounded-full transition-all" :style="{ width: uploadProgress + '%' }"></div>
                   </div>
+                </div>
+
+                <div class="mt-3 rounded-lg border border-amber-200 bg-amber-50 p-3 text-xs text-amber-900 leading-relaxed">
+                  <strong>No payment yet.</strong> The technical team reviews your document manually. If approved, you will receive an email and can then sign in to choose a subscription plan.
                 </div>
               </div>
             </div>
@@ -181,10 +185,10 @@
                 <Lock class="w-5 h-5 flex-shrink-0 mt-0.5 text-red-600" />
                 <span class="font-medium">{{ error }}</span>
               </div>
-              <div class="text-xs text-gray-600 pl-8">
+              <div class="text-xs text-navy-500 pl-8">
                 Need immediate help? Contact our support team at
                 <a href="mailto:support@medlabconvo.com" class="text-brand font-semibold hover:underline">support@medlabconvo.com</a>
-                or WhatsApp <strong class="text-gray-900">+234 813 000 0000</strong>.
+                or WhatsApp <strong class="text-navy-950">+234 813 000 0000</strong>.
               </div>
             </div>
 
@@ -193,7 +197,7 @@
                 v-if="step === 3" 
                 type="button" 
                 @click="step = 2" 
-                class="w-1/3 py-3 text-base font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded"
+                class="w-1/3 py-3 text-sm font-bold text-navy-600 bg-navy-50 hover:bg-navy-100 rounded-full transition-colors"
               >
                 Back
               </button>
@@ -207,8 +211,8 @@
             </div>
           </form>
 
-          <div class="mt-8 text-center pt-6 border-t border-gray-100">
-            <p class="text-gray-600 text-sm">
+          <div class="mt-7 text-center pt-5 border-t border-navy-100">
+            <p class="text-navy-500 text-sm">
               Already have an account?
               <NuxtLink to="/login" class="font-medium text-brand hover:underline ml-1">
                 Sign in
@@ -216,8 +220,9 @@
             </p>
           </div>
         </div>
+        </div>
       </div>
-    </div>
+    </main>
   </div>
 </template>
 
@@ -234,7 +239,7 @@ useSeoMeta({
 })
 
 import { ref, watch, onMounted, onUnmounted, computed } from 'vue';
-import { ArrowRight, UploadCloud, CheckCircle2, Lock, Mail } from 'lucide-vue-next';
+import { ArrowRight, UploadCloud, CheckCircle2, Lock, Mail, FileText, ShieldCheck } from 'lucide-vue-next';
 import { useRegister } from '@/composables/modules/auth/useRegister';
 import UiInput from '@/components/ui/Input.vue';
 import UiButton from '@/components/ui/Button.vue';
@@ -264,7 +269,7 @@ const countries = getCountries().map(code => {
 }).sort((a, b) => (a.name || '').localeCompare(b.name || ''));
 
 const { loading, uploadProgress, error, register, sendOtp, verifyOtp } = useRegister();
-const form = ref({ firstName: '', lastName: '', email: '', password: '', otp: '', country: '', phoneNumber: '', professionalBackground: '', planId: '', file: null as File | null });
+const form = ref({ firstName: '', lastName: '', email: '', password: '', otp: '', country: '', phoneNumber: '', professionalBackground: '', verificationDocumentType: '', file: null as File | null });
 const success = ref(false);
 const step = ref(1);
 
@@ -306,8 +311,8 @@ const handleOtpKeydown = (idx: number, e: KeyboardEvent) => {
 };
 
 const resendCode = async () => {
-  const success = await sendOtp(form.value.email, form.value.firstName, 'intern');
-  if (success) {
+  const sent = await sendOtp(form.value.email, form.value.firstName, 'intern');
+  if (sent) {
     startCountdown();
   }
 };
@@ -325,25 +330,15 @@ const DEFAULT_DEPARTMENTS = [
   { label: 'General Clinical Laboratory Practice', value: 'GENERAL' },
 ];
 
-const DEFAULT_PLANS = [
-  {
-    _id: 'default-plan-intern-annual',
-    name: 'Intern Professional Annual Access',
-    description: 'Comprehensive 12-month access to clinical bench guides, expert mentorship, and career hub.',
-    price: 3000000,
-    durationMonths: 12
-  },
-  {
-    _id: 'default-plan-intern-quarterly',
-    name: 'Intern Clinical Rotation Access (3 Months)',
-    description: 'Specialized 3-month access tailored for active laboratory clinical rotations.',
-    price: 900000,
-    durationMonths: 3
-  }
+const documentTypes = [
+  { label: 'Internship posting letter', value: 'INTERNSHIP_POSTING_LETTER' },
+  { label: 'Provisional / full licence', value: 'PROVISIONAL_LICENSE' },
+  { label: 'Degree / attestation certificate', value: 'DEGREE_ATTESTATION' },
+  { label: 'Hospital / laboratory ID', value: 'HOSPITAL_ID' },
+  { label: 'Other professional document', value: 'OTHER_PROFESSIONAL' },
 ];
 
 const departments = ref<{label: string; value: string}[]>(DEFAULT_DEPARTMENTS);
-const plans = ref<any[]>(DEFAULT_PLANS);
 
 const fetchData = async () => {
   try {
@@ -355,20 +350,6 @@ const fetchData = async () => {
     console.warn('Using default departments list:', err);
   }
 
-  try {
-    const plansRes = await GATEWAY_ENDPOINT.get('/subscriptions');
-    const plansData = plansRes?.data || plansRes;
-    if (Array.isArray(plansData) && plansData.length > 0) {
-      plans.value = plansData;
-    }
-  } catch (err) {
-    console.warn('Using default plans list:', err);
-  }
-
-  // Pre-select first plan if none selected
-  if (!form.value.planId && plans.value.length > 0) {
-    form.value.planId = plans.value[0]._id;
-  }
 };
 
 onMounted(() => {
@@ -406,8 +387,8 @@ const submitStep = async () => {
       error.value = "Please fill in all basic details.";
       return;
     }
-    const success = await sendOtp(form.value.email, form.value.firstName, 'intern');
-    if (success) {
+    const sent = await sendOtp(form.value.email, form.value.firstName, 'intern');
+    if (sent) {
       step.value = 2;
       startCountdown();
     }
@@ -440,8 +421,8 @@ const submitStep = async () => {
     error.value = 'Please select a department.';
     return;
   }
-  if (!form.value.planId) {
-    error.value = 'Please select a subscription plan.';
+  if (!form.value.verificationDocumentType) {
+    error.value = 'Please select the type of document you uploaded.';
     return;
   }
   if (!form.value.file) {
@@ -457,7 +438,7 @@ const submitStep = async () => {
     country: form.value.country,
     phoneNumber: form.value.phoneNumber,
     professionalBackground: form.value.professionalBackground,
-    planId: form.value.planId,
+    verificationDocumentType: form.value.verificationDocumentType,
     file: form.value.file,
   });
   if (result) {

@@ -8,6 +8,11 @@ export const authApi = {
     email: string;
     password: string;
     verificationFileUrl: string;
+    country?: string;
+    phoneNumber?: string;
+    professionalBackground?: string;
+    verificationDocumentType?: string;
+    planId?: string;
   }) {
     return GATEWAY_ENDPOINT.post('/auth/register', data);
   },
